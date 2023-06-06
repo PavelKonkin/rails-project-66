@@ -21,6 +21,10 @@ en:
       add_bulletin: Add bulletin
       sign_in: Sign in
   web:
+    welcome:
+      index:
+        title: Repository quality analizer
+        body: A project that helps automatically monitor the quality of repositories on Github. It tracks changes and runs them through built-in analyzers. Then, it generates reports and sends them to the user.
     admin:
       bulletins:
         index:
