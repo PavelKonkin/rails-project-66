@@ -1,0 +1,47 @@
+doctype html
+html.h-100
+  head
+    title
+      = t('.repo_analizer')
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
+  body.d-flex.flex-column.h-100
+    .container.mb-2
+      .d-flex.flex-wrap.align-items-center.py-2.border-bottom
+        .navbar.navbar-expand-md.navbar-light.me-auto
+          = link_to t('.repo_analizer'), root_path, class: 'navbar-brand me-md-4'
+          .collapse.navbar-collapse id="navbarToggler"
+            .ul.nav.nav-pills.flex-grow-1.navbar-nav.me-auto
+              .li.nav-item.me-2
+                = link_to t('.home'), root_path, class: 'nav-link text-dark'
+              / - if current_user
+              /   .li.nav-item.me-2
+              /     = link_to t('.my_bulletins'), profile_path, class: 'nav-link text-dark'
+              /   .li.nav-item.me-2
+              /     = link_to t('.add_bulletin'), new_bulletin_path, class: 'nav-link text-dark'
+        .ul.nav.nav-pills
+          / - if current_user&.admin?
+          /   = link_to t('.admin_panel'), admin_root_path, class: 'nav-link link-dark'
+          / - if current_user
+          /   = link_to t('.sign_out'), sessions_path, class: 'nav-link link-dark'
+          / - else
+          /   = button_to auth_request_url(:github), method: :post, data: { turbo: false }, class: 'btn w-100' do
+          /     span.bi.bi-github
+          /     |<
+          /     =t('.sign_in')
+
+    - if notice
+      .container.alert.alert-info role='alert'
+        = notice
+    - if alert
+      .container.alert.alert-danger role='alert'
+        = alert
+    = yield
+
+    footer.mt-auto.py-3.bg-light
+      .container
+        span class='text-muted'
+          = t('.year', year: Time.current.year)

@@ -1,0 +1,192 @@
+ru:
+  archived: В архиве
+  draft: Черновик
+  under_moderation: На модерации
+  rejected: Возвращено
+  published: Опубликовано
+  attributes:
+    title: Название
+    description: Описание
+    category: Категория
+    name: Имя
+  layouts:
+    application:
+      admin_panel: Админка
+      repo_analizer: Анализатор репозиториев
+      sign_out: Выйти
+      year: Павел Конкин, %{year}
+      bulletin_board: Доска объявлений
+      home: Главная
+      my_bulletins: Мои объявления
+      add_bulletin: Добавить объявление
+      sign_in: Войти
+  web: 
+    admin:
+      bulletins:
+        index:
+          bulletins_list: Cписок объявлений
+          users_list: Список пользователей
+          categories_list: Список категорий
+          bulletins: Объявления
+          title: Название
+          state: Состояние
+          created_at: Дата создания
+          actions: Действия
+          show: Показать
+          to_archive: В архив
+          publish: Опубликовать
+          reject: Вернуть
+          search_by_title: Найти по наименовнию
+          select_state: Выберите состояние
+          search: Найти
+          reset: Сброс
+          forbidden: Вход только для администраторов
+          updated_at: Дата обновления
+        reject:
+          rejected: Возвращено
+          may_not_be_rejected: Не может быть возвращено
+        publish:
+          published: Опубликовано
+          may_not_be_published: Не может быть опубликовано
+        archive:
+          archived: Отправлено в архив
+          may_not_send_to_archive: Невозможно отправить в архив
+          not_authorized: Нет прав
+      users:
+        index:
+          bulletins_list: Cписок объявлений
+          users_list: Список пользователей
+          categories_list: Список категорий
+          users: Пользователи
+          name: Имя
+          email: email
+          actions: Действия
+          edit: Редактировать
+        edit:
+          bulletins_list: Cписок объявлений
+          users_list: Список пользователей
+          categories_list: Список категорий
+          edit_user: Редактировать пользователя
+          name: Имя
+        update:
+          updated: Данные пользователя обновлены
+        form:
+          edit: Обновить
+      categories:
+        index:
+          bulletins_list: Cписок объявлений
+          users_list: Список пользователей
+          categories_list: Список категорий
+          categories: Категории
+          add_category: Добавить категорию
+          id: id
+          name: Имя
+          actions: Действия
+          edit: Редактировать
+          destroy: Удалить
+          confirm_delete: Подтвердите удаление категории
+        new:
+          bulletins_list: Cписок объявлений
+          users_list: Список пользователей
+          categories_list: Список категорий
+          new_category: Новая категория
+        edit:
+          bulletins_list: Cписок объявлений
+          users_list: Список пользователей
+          categories_list: Список категорий
+          edit_category: Редактировать категорию
+        update:
+          updated: Категория обновлена
+        create:
+          created: Категория создана
+        destroy:
+          deleted: Категория удалена
+          cannot_be_deleted: Категория не может быть удалена. Есть объявления, относящиеся к ней 
+        form:
+          new: Создать
+          edit: Обновить
+          create: Cоздать
+      shared:
+        nav:
+          bulletins_list: Cписок объявлений
+          users_list: Список пользователей
+          categories_list: Список категорий
+    session:
+      destroy:
+        signed_out: Выход выполнен
+    auth:
+      callback:
+        signed_in: Вход выполнен
+        sign_in_failed: Не удалось войти
+    profile:
+      show:
+          my_bulletins: Мои объявления
+          add_bulletin: Добавить объявление
+          title: Название
+          state: Состояние
+          created_at: Дата создания
+          actions: Действия
+          show: Показать
+          edit: Редактировать
+          to_archive: В архив
+          to_moderation: На модерацию 
+          search_by_title: Найти по наименовнию
+          select_state: Выберите состояние
+          search: Найти
+          reset: Сброс
+          ago: назад
+          forbidden: Войдите для доступа к профилю
+          updated_at: Дата обновления
+    bulletins:
+        index:
+          bulletin_board: Доска объявлений
+          search_by_title: Найти по наименовнию
+          select_category: Выберите категорию
+          search: Найти
+          reset: Сброс
+          ago: назад
+        edit:
+          edit_bulletin: Редактировать объявление
+          back: Назад
+        create:
+          bulletin_created: Объявление создано
+        new:
+          new_bulletin: Новое объявление
+          back: Назад
+          forbidden: Войдите для создания объявления
+        update:
+          bulletin_updated: Объявление обновлено
+        to_moderation:
+          sent_to_moderation: Отправлено на модерацию
+          may_not_send_on_moderation: Невозможно отправить на модерацию
+        archive:
+          sent_to_archive: Отправлено в архив
+          may_not_send_to_archive: Невозможно отправить в архив
+        show:
+          back: Назад
+        form:
+          photo: Фотография
+        forbidden: Войдите для редактирования своих объявлений
+  helpers:
+    submit:
+      update: Сохранить изменения
+      create: Создать
+      bulletin:
+        create: Сохранить
+        update: Сохранить изменения
+  views:
+    pagination:
+      first: "Первая"
+      last: "Последняя"
+      previous: "Предыдущая"
+      next: "Следующая"
+      truncate: "&hellip;"
+  activerecord:
+    attributes:
+      bulletin:
+        state:
+          archived: В архиве
+          draft: Черновик
+          under_moderation: На модерации
+          rejected: Возвращено
+          published: Опубликовано

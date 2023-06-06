@@ -1,33 +1,191 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  archived: Archived
+  draft: Draft
+  under_moderation: Under moderation
+  rejected: Rejected
+  published: Published
+  attributes:
+    title: Title
+    description: Description
+    category: Category
+    name: Name
+  layouts:
+    application:
+      admin_panel: Admin panel
+      repo_analizer: Repository analizer
+      sign_out: Sing out
+      year: Pavel Konkin, %{year}
+      bulletin_board: Bulletin board
+      home: Home
+      my_bulletins: My bulletins
+      add_bulletin: Add bulletin
+      sign_in: Sign in
+  web:
+    admin:
+      bulletins:
+        index:
+          bulletins_list: Bulletins list
+          users_list: Users list
+          categories_list: Categories list
+          bulletins: Bulletins
+          title: Title
+          state: State
+          created_at: Created at
+          actions: Actions
+          show: Show
+          to_archive: To archive
+          publish: Publish
+          reject: Reject
+          search_by_title: Search by title
+          select_state: Select state
+          search: Search
+          reset: Reset
+          forbidden: Admins only
+          updated_at: Updated at
+        reject:
+          rejected: Rejected
+          may_not_be_rejected: May not be rejected
+        publish:
+          published: Published
+          may_not_be_published: May not be published
+        archive:
+          archived: Archived
+          may_not_send_to_archive: May not send to archive
+          not_authorized: Not authorized
+      users:
+        index:
+          bulletins_list: Bulletins list
+          users_list: Users list
+          categories_list: Categories list
+          users: Users
+          name: Name
+          email: email
+          actions: Actions
+          edit: Edit
+        edit:
+          bulletins_list: Bulletins list
+          users_list: Users list
+          categories_list: Categories list
+          edit_user: Edit user
+          name: Name
+        update:
+          updated: Данные пользователя обновлены
+        form:
+          edit: Обновить
+      categories:
+        index:
+          bulletins_list: Bulletins list
+          users_list: Users list
+          categories_list: Categories list
+          categories: Categories
+          add_category: Add category
+          id: id
+          name: name
+          actions: Actions
+          edit: Edit
+          destroy: Delete
+          confirm_delete: Confirm delete
+        new:
+          bulletins_list: Bulletins list
+          users_list: Users list
+          categories_list: Categories list
+          new_category: New category
+        edit:
+          bulletins_list: Bulletins list
+          users_list: Users list
+          categories_list: Categories list
+          edit_category: Edit category
+        update:
+          updated: Category was updated
+        create:
+          created: Category created
+        destroy:
+          deleted: Category deleted
+          cannot_be_deleted: Category cannot be deleted. There are bulletins that references to it
+        form:
+          new: Create
+          edit: Update
+          create: Create
+      shared:
+        nav:
+          bulletins_list: Bulletins list
+          users_list: Users list
+          categories_list: Categories list
+    session:
+      destroy:
+        signed_out: Signed out
+    auth:
+      callback:
+        signed_in: Signed in
+        sign_in_failed: Sign in failed
+    profile:
+      show:
+        my_bulletins: My bulletins
+        add_bulletin: Add bulletin
+        title: Title
+        state: State
+        created_at: Created at
+        actions: Actions
+        show: Show
+        edit: Edit
+        to_archive: To archive
+        to_moderation: To moderation
+        search_by_title: Search by title
+        select_state: Select state
+        search: Search
+        reset: Reset
+        forbidden: You must sign in to access profile page
+        updated_at: Updated at
+    bulletins:
+        index:
+          bulletin_board: Bulletin board
+          search_by_title: Search by title
+          select_category: Select category
+          search: Search
+          reset: Reset
+          ago: ago
+        edit:
+          edit_bulletin: Edit bulletin
+          back: Back
+        create:
+          bulletin_created: Bulletin created
+        new:
+          new_bulletin: New bulletin
+          back: Back
+          forbidden: Sign in to create bulletin
+        update:
+          bulletin_updated: Bulletin updated
+        to_moderation:
+          sent_to_moderation: Sent to moderstion
+          may_not_send_on_moderation: May not send on moderation
+        archive:
+          sent_to_archive: Sent to archive
+          may_not_send_to_archive: May not send to archive
+        show:
+          back: Back
+        form:
+          photo: Photo
+        forbidden: Sign in to edit bullletins
+  helpers:
+    submit:
+      update: Update
+      create: Create
+      bulletin:
+        create: Create
+        update: Update
+  views:
+    pagination:
+      first: "First"
+      last: "Last"
+      previous: "Prev"
+      next: "Next"
+      truncate: "&hellip;"
+  activerecord:
+    attributes:
+      bulletin:
+        state:
+          archived: Archived
+          draft: Draft
+          under_moderation: Under moderation
+          rejected: Rejected
+          published: Published
