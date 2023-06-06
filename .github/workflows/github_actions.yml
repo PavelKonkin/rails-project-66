@@ -1,0 +1,32 @@
+name: GitHub Action
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.2.2'
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: false
+    - name: Install dependencies
+      run: make install
+    - name: assets precompile
+      run: make assets
+    - name: Run Rubocop
+      run: make lint
+    - name: Run tests
+      run: make test
