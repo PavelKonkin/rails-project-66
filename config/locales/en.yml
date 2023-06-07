@@ -115,7 +115,7 @@ en:
           bulletins_list: Bulletins list
           users_list: Users list
           categories_list: Categories list
-    session:
+    sessions:
       destroy:
         signed_out: Signed out
     auth:

@@ -1,6 +1,6 @@
 install:
 	bundle install
-
+	cp -n .env.example .env || true
 start:
 	bin/rails s -p 3000 -b "0.0.0.0"
 

@@ -23,15 +23,18 @@ html.h-100
               /   .li.nav-item.me-2
               /     = link_to t('.add_bulletin'), new_bulletin_path, class: 'nav-link text-dark'
         .ul.nav.nav-pills
-          / - if current_user&.admin?
-          /   = link_to t('.admin_panel'), admin_root_path, class: 'nav-link link-dark'
-          / - if current_user
-          /   = link_to t('.sign_out'), sessions_path, class: 'nav-link link-dark'
-          / - else
-          /   = button_to auth_request_url(:github), method: :post, data: { turbo: false }, class: 'btn w-100' do
-          /     span.bi.bi-github
-          /     |<
-          /     =t('.sign_in')
+          - if current_user
+            .li.nav-item.me-2
+              = link_to current_user.email, '#', class: 'nav-link text-secondary'
+          - if current_user
+            .li.nav-item.me-2
+              = link_to t('.sign_out'), sessions_path, class: 'nav-link link-dark'
+          - else
+            .li.nav-item.me-2
+              = button_to auth_request_url(:github), method: :post, data: { turbo: false }, class: 'btn w-100' do
+                span.bi.bi-github
+                |<
+                =t('.sign_in')
 
     - if notice
       .container.alert.alert-info role='alert'
