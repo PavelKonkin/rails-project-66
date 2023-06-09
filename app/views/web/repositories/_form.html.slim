@@ -1,0 +1,12 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      = simple_form_for(@repository) do |f|
+        = f.error_notification
+        = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+        .form-inputs
+          = f.input :github_id
+
+        .form-actions
+          = f.button :submit, class: 'btn btn-success'

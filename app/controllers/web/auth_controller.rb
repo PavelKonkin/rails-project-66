@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::AuthController < ApplicationController
+class Web::AuthController < Web::ApplicationController
   def callback
     user_info = receive_user_info
     user = User.find_or_initialize_by(email: user_info[:email])

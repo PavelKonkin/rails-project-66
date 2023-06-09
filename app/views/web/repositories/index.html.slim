@@ -1,0 +1,17 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      = link_to t('.new_repo'), new_repository_path, class: 'btn btn-primary'
+      table.table.table-borderless.table-striped.mt-4
+        thead
+          tr
+            th = t('.title')
+            th = t('.language')
+            th = t('.last_check_status')
+        tbody
+          - @repositories.each do |repository|
+            tr
+              td
+                = link_to repository.title, repository, class: 'me-2'
+              td = repository.language
+              td 'check status'

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  scope module: :web do
+    resources :repositories, only: %i[index new create show]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   scope module: :web do
     root 'welcome#index'

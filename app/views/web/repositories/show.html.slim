@@ -1,0 +1,16 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      .h1 =< @repository.github_id
+      p
+        strong = t('.title')
+        =< @repository.github_id
+      p
+        strong = t('.language')
+        =< @repository.language
+      p
+        strong = t('.created_at')
+        =< l @repository.created_at, format: :long
+      p
+        strong = t('.updated_at')
+        =< l @repository.updated_at, format: :long

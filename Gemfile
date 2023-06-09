@@ -74,17 +74,22 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'minitest-power_assert'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'webmock'
 end
 
 group :production do
   gem 'pg'
 end
 
+gem 'enumerize'
+gem 'octokit'
 gem 'omniauth'
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-rails_csrf_protection'
+gem 'pundit'
 gem 'rails-i18n'
 gem 'rollbar'
 gem 'rubocop'
