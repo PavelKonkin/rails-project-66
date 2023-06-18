@@ -9,7 +9,8 @@ class EslintApi
     Open3.capture2("git clone #{repo['clone_url']} #{Rails.root.join(repo[:name])}")
     check.start!
     # check_result, _e, status = Open3.capture3("yarn run eslint #{repo[:name]} --format=json") { |stdout, status| [stdout.read, status.success?] }
-    check_result, _e, status = Open3.capture3("npx eslint #{Rails.root.join(repo[:name])} --format=json")
+    # check_result, _e, status = Open3.capture3("npx eslint #{Rails.root.join(repo[:name])} --format=json")
+    check_result, _e, status = Open3.capture3("node_modules/eslint/bin/eslint.js -f json -c #{Rails.root.join('.eslintrc.yml')}  --no-eslintrc #{Rails.root.join(repo[:name])}")
     check_pass = status.exitstatus.zero?
 
     check.complete!
