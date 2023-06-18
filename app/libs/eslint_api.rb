@@ -4,7 +4,8 @@ require 'open3'
 class EslintApi
   def self.check_repo(current_user, repository, check)
     repo = ApplicationContainer[:octokit_api].repo(current_user, repository.github_id)
-    system("git clone #{repo['ssh_url']}")
+    # system("git clone #{repo['ssh_url']}")
+    system("git clone #{repo['clone_url']}")
     check.start!
     check_result, _e, status = Open3.capture3("yarn run eslint #{repo[:name]} --format=json") { |stdout, status| [stdout.read, status.success?] }
     check_pass = status.exitstatus.zero?
