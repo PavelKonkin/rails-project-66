@@ -14,4 +14,8 @@
               td
                 = link_to repository.title, repository, class: 'me-2'
               td = repository.language
-              td 'check status'
+              td
+                - if repository.checks.last
+                  = repository.checks.last.check_pass.to_s
+                - else
+                  = t('.not_run_yet')

@@ -9,21 +9,25 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def show
     @repository = Repository.find(params[:id])
+    @checks = @repository.checks
     authorize @repository
   end
 
   def new
     @repository = Repository.new
-    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
-    lang_arr = Repository.language.values.collect(&:text)
-    @repos = client.repos.each_with_object([]) { |repo, arr| (arr << repo[:full_name]) if lang_arr.include? repo.language }
+    # client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
+    # client = ApplicationContainer[:octokit_api].client
+    # lang_arr = Repository.language.values.collect(&:text)
+    # @repos = client.repos.each_with_object([]) { |repo, arr| (arr << repo[:full_name]) if lang_arr.include? repo.language }
+    @repos = ApplicationContainer[:octokit_api].repos(current_user)
     # debugger
   end
 
   def create
-    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
-    repo = client.repos.find { |el| el.full_name == repository_params[:github_id] }
-    @repository = current_user.repositories.build(repository_params.merge({ language: repo[:language].downcase, title: repo[:name] }))
+    # client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
+    # repo = client.repos.find { |el| el.full_name == repository_params[:github_id] }
+    repo = ApplicationContainer[:octokit_api].repo(current_user, repository_params[:github_id])
+    @repository = current_user.repositories.build(repository_params.merge({ language: repo['language'].downcase, title: repo['name'] }))
     authorize @repository
     if @repository.save
       redirect_to repository_url(@repository), notice: t('.repository_created')

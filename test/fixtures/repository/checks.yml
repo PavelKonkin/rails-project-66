@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_pass: false
+  commit_id: MyString
+  check_result:
+  repository: one 
+
+two:
+  check_pass: false
+  commit_id: MyString
+  check_result:
+  repository: two 

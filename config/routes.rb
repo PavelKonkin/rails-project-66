@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   scope module: :web do
-    resources :repositories, only: %i[index new create show]
+    resources :repositories, only: %i[index new create show] do
+      resources :checks, shallow: true, only: %i[show create]
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   scope module: :web do

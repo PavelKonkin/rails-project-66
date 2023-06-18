@@ -1,0 +1,56 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      = link_to t('.repository'), repository_path(@check.repository), class: 'btn btn-primary'
+      .h1
+        => t('.check')
+        = @check.id
+      table.table
+        tbody
+          tr
+            td
+              = t('.created_at')
+            td
+              = l @check.created_at, format: :short
+          tr
+            td
+              = t('.status')
+            td
+              = @check.state
+          tr
+            td
+              = t('.check_pass')
+            td
+              = @check.check_pass
+          tr
+            td
+              = t('.error_count')
+            td
+              = @check.error_count
+          tr
+            td
+              = t('.commit_id')
+            td
+              = link_to @check.commit_id, @check.commit_link
+      - if @check.check_result&.any?
+        table.table.table-hover.mb-5
+          thead
+            tr
+              th = t('.message')
+              th = t('.rule_id')
+              th = t('.row_symbol')
+          tbody
+            - @check.check_result.each do |file|
+              tr
+                td
+                  = link_to file['relative_path'], file['file_path']
+                td
+                td
+              - file['messages'].each do |message|
+                tr
+                  td
+                    = message['message_text']
+                  td
+                    = message['rule_id']
+                  td
+                    = message['line_symbol']

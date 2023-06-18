@@ -84,6 +84,8 @@ group :production do
   gem 'pg'
 end
 
+gem 'aasm'
+gem 'dry-container'
 gem 'enumerize'
 gem 'octokit'
 gem 'omniauth'

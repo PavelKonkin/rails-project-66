@@ -172,6 +172,8 @@ en:
         forbidden: Sign in to edit bullletins
     repositories:
       forbidden: Sign in to access repositories
+      create:
+        repository_created: Repo has been created
   helpers:
     submit:
       update: Update

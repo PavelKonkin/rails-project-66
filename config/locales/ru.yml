@@ -173,6 +173,8 @@ ru:
         forbidden: Войдите для редактирования своих объявлений
     repositories:
       forbidden: Войдите для доступа
+      create:
+        repository_created: Репозиторий создан
   helpers:
     submit:
       update: Сохранить изменения
