@@ -87,6 +87,7 @@ end
 gem 'aasm'
 gem 'dry-container'
 gem 'enumerize'
+gem 'faraday-retry'
 gem 'octokit'
 gem 'omniauth'
 gem 'omniauth-github', '~> 2.0.0'
