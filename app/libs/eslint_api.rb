@@ -9,18 +9,24 @@ class EslintApi
     Open3.capture2("git clone #{repo['clone_url']}")
     check.start!
     # check_result, _e, status = Open3.capture3("yarn run eslint #{repo[:name]} --format=json") { |stdout, status| [stdout.read, status.success?] }
-    check_result, _e, status = Open3.capture3("npx eslint #{repo[:name]} --format=json")
+    prefix = if Rails.env.production?
+               'app/'
+             else
+               ''
+             end
+    check_result, _e, status = Open3.capture3("npx eslint #{prefix}#{repo[:name]} --format=json")
     check_pass = status.exitstatus.zero?
 
     check.complete!
 
     start_index = check_result.index('[')
     end_index = check_result.rindex(']')
+
+    processed_check_result = []
     if start_index && end_index
       json_result = check_result[start_index...end_index + 1]
       parsed_result = JSON.parse(json_result)
 
-      processed_check_result = []
       error_count = 0
       parsed_result.each do |repo_file|
         next if repo_file['errorCount'].zero?
