@@ -15,27 +15,30 @@ class EslintApi
     check.complete!
 
     start_index = check_result.index('[')
-    end_index = check_result.rindex(']') + 1
-    json_result = check_result[start_index...end_index]
-    parsed_result = JSON.parse(json_result)
+    end_index = check_result.rindex(']')
+    if start_index && end_index
+      json_result = check_result[start_index...end_index + 1]
+      parsed_result = JSON.parse(json_result)
 
-    processed_check_result = []
-    error_count = 0
-    parsed_result.each do |repo_file|
-      next if repo_file['errorCount'].zero?
+      processed_check_result = []
+      error_count = 0
+      parsed_result.each do |repo_file|
+        next if repo_file['errorCount'].zero?
 
-      error_count += repo_file['errorCount']
-      file_hash = {}
-      file_info = path_to_file_on_github(repo_file['filePath'], repo[:full_name], repo[:name])
-      file_hash[:file_path] = file_info[:file_path]
-      file_hash[:relative_path] = file_info[:relative_path]
-      file_hash[:messages] = []
-      repo_file['messages'].each do |message|
-        file_hash[:messages] << { rule_id: message['ruleId'], message_text: message['message'], line_symbol: "#{message['line']}:#{message['column']}" }
+        error_count += repo_file['errorCount']
+        file_hash = {}
+        file_info = path_to_file_on_github(repo_file['filePath'], repo[:full_name], repo[:name])
+        file_hash[:file_path] = file_info[:file_path]
+        file_hash[:relative_path] = file_info[:relative_path]
+        file_hash[:messages] = []
+        repo_file['messages'].each do |message|
+          file_hash[:messages] << { rule_id: message['ruleId'], message_text: message['message'], line_symbol: "#{message['line']}:#{message['column']}" }
+        end
+        processed_check_result << file_hash
       end
-      processed_check_result << file_hash
+    else
+      processed_check_result << check_result
     end
-
     folder_path = Rails.root.join(repo[:name])
     if File.directory?(folder_path)
       FileUtils.rm_rf(repo[:name])
