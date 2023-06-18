@@ -39,6 +39,7 @@ class EslintApi
       end
     else
       processed_check_result << check_result
+      processed_check_result << Rails.root.join(repo[:name])
     end
     folder_path = Rails.root.join(repo[:name])
     if File.directory?(folder_path)
