@@ -17,6 +17,6 @@ class OctokitApi
   end
 
   def self.commit(current_user, repo_full_name)
-    client(current_user).commits(repo_full_name).last
+    client(current_user).commits(repo_full_name).first
   end
 end

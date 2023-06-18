@@ -6,7 +6,7 @@ class EslintApi
     repo = ApplicationContainer[:octokit_api].repo(current_user, repository.github_id)
     # system("git clone #{repo['ssh_url']}")
     # system("git clone #{repo['clone_url']}")
-    Open3.capture2("git clone #{repo['clone_url']}")
+    Open3.capture2("git clone #{repo['clone_url']} #{Rails.root.join(repo[:name])}")
     check.start!
     # check_result, _e, status = Open3.capture3("yarn run eslint #{repo[:name]} --format=json") { |stdout, status| [stdout.read, status.success?] }
     check_result, _e, status = Open3.capture3("npx eslint #{Rails.root.join(repo[:name])} --format=json")
