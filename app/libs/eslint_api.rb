@@ -4,11 +4,15 @@ require 'open3'
 class EslintApi
   def self.check_repo(current_user, repository, check)
     repo = ApplicationContainer[:octokit_api].repo(current_user, repository.github_id)
+    folder_path = Rails.root.join(repo[:name])
+    if File.directory?(folder_path)
+      FileUtils.rm_rf(repo[:name])
+    end
     Open3.capture2("git clone #{repo['clone_url']} #{Rails.root.join(repo[:name])}")
     check.start!
-    check_result, status = Open3.popen3("node_modules/eslint/bin/eslint.js #{Rails.root.join(repo[:name])} --format=json") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
+    conf_path = Rails.root.join('.eslintrc.yml')
+    check_result, status = Open3.popen3("node_modules/eslint/bin/eslint.js -f json -c #{conf_path} --no-eslintrc #{Rails.root.join(repo[:name])}") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
     check_pass = status.exitstatus.zero?
-
     check.complete!
 
     processed_check_result = []
