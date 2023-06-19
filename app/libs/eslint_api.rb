@@ -12,7 +12,8 @@ class EslintApi
     check.start!
     conf_path = Rails.root.join('.eslintrc.yml')
     check_result, status = Open3.popen3("node_modules/eslint/bin/eslint.js -f json -c #{conf_path} --no-eslintrc #{Rails.root.join(repo[:name])}") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
-    check_pass = status.exitstatus.zero?
+    # check_pass = status.exitstatus.zero?
+    check_pass = false
     check.complete!
 
     processed_check_result = []
