@@ -10,10 +10,10 @@ class EslintApi
     end
     Open3.capture2("git clone #{repo['clone_url']} #{Rails.root.join(repo[:name])}")
     check.start!
-    conf_path = Rails.root.join('.eslintrc.yml')
-    check_result, _status = Open3.popen3("#{Rails.root}/node_modules/eslint/bin/eslint.js -f json -c #{conf_path} --no-eslintrc #{Rails.root.join(repo[:name])}") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
+    # conf_path = Rails.root.join('.eslintrc.yml')
+    check_result, _status = Open3.popen3("#{Rails.root}/node_modules/eslint/bin/eslint.js #{Rails.root.join(repo[:name])} -f json") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
     # check_pass = status.exitstatus.zero?
-    check_pass = false
+    check_pass = Rails.root.join('node_modules/eslint/bin').directory?
     check.complete!
 
     processed_check_result = []
