@@ -15,7 +15,7 @@ class EslintApi
     # check_pass = status.exitstatus.zero?
     check_pass = File.directory?('node_modules/eslint/bin')
     check.complete!
-
+    check.update(check_pass:)
     processed_check_result = []
 
     error_count = 0
