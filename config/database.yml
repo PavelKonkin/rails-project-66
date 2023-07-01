@@ -24,3 +24,9 @@ production:
   adapter: postgresql
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
+  encoding: <%= ENV['DATABASE_ENCODING'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  pool: <%= ENV['DATABASE_POOL'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
