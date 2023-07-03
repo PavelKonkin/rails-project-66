@@ -2,12 +2,12 @@
 
 one:
   title: MyString
-  language: MyString
+  language: ruby
   user: one
   github_id: github_id
 
 two:
   title: MyString
-  language: MyString
+  language: javascript
   user: two
   github_id: github_id_2

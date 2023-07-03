@@ -5,6 +5,6 @@ class Repository < ApplicationRecord
   belongs_to :user
   has_many :checks, class_name: 'Repository::Check', dependent: :destroy
 
-  enumerize :language, in: %i[javascript], I18n_scope: 'language'
+  enumerize :language, in: %i[javascript ruby], I18n_scope: 'language'
   validates :github_id, presence: true, uniqueness: true
 end

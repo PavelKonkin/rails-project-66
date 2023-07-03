@@ -197,7 +197,11 @@ en:
           under_moderation: Under moderation
           rejected: Rejected
           published: Published
-
+  enumerize:
+    repository:
+      language:
+        javascript: JavaScript
+        ruby: Ruby
 ---
 en:
   activerecord:
