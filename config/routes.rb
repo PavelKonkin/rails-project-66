@@ -5,18 +5,28 @@ Rails.application.routes.draw do
     resources :repositories, only: %i[index new create show] do
       resources :checks, shallow: true, only: %i[show create]
     end
-  end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  scope module: :web do
-    root 'welcome#index'
-  end
 
-  scope module: :web do
+    root 'welcome#index'
+
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
-  end
 
-  scope module: :web do
     get :sessions, to: 'sessions#destroy'
   end
+
+  scope module: :api do
+    post '/api/checks', to: 'checks#on_push', as: :web_hook
+  end
+  # scope module: :web do
+  #   root 'welcome#index'
+  # end
+
+  # scope module: :web do
+  #   post 'auth/:provider', to: 'auth#request', as: :auth_request
+  #   get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
+  # end
+
+  # scope module: :web do
+  #   get :sessions, to: 'sessions#destroy'
+  # end
 end

@@ -30,6 +30,7 @@ class Web::RepositoriesController < Web::ApplicationController
     @repository = current_user.repositories.build(repository_params.merge({ language: repo['language'].downcase, title: repo['name'] }))
     authorize @repository
     if @repository.save
+      ApplicationContainer[:octokit_api].set_webhook(current_user, repo)
       redirect_to repository_url(@repository), notice: t('.repository_created')
     else
       render :new, status: :unprocessable_entity

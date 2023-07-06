@@ -11,4 +11,6 @@ class OctokitApiStub
     response = JSON.parse(File.read('test/fixtures/files/response.json'))
     response.find { |el| el['full_name'] == github_id }
   end
+
+  def self.set_webhook(_current_user, _repo); end
 end

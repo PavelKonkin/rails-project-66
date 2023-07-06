@@ -19,4 +19,28 @@ class OctokitApi
   def self.commit(current_user, repo_full_name)
     client(current_user).commits(repo_full_name).first
   end
+
+  def self.set_webhook(current_user, repo)
+    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
+    delete_webhook(current_user, repo)
+    client.create_hook(repo['full_name'], 'web', {
+                         url: Rails.application.routes.url_helpers.url_for(controller: 'api/checks', action: 'on_push'),
+                         content_type: 'json'
+                       }, {
+                         events: ['push'],
+                         active: true
+                       })
+  end
+
+  def self.delete_webhook(current_user, repo)
+    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
+    repo_name = repo['full_name']
+    webhook_url = Rails.application.routes.url_helpers.url_for(controller: 'api/checks', action: 'on_push')
+    hooks = client.hooks(repo_name)
+    hooks.each do |hook|
+      if hook.config.url == webhook_url
+        client.remove_hook(repo_name, hook[:id])
+      end
+    end
+  end
 end
