@@ -12,6 +12,7 @@ class RubocopApi
     check.start!
     check_result, status = Open3.popen3("rubocop #{folder_path} -c .rubocop.yml --format json") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
     check_pass = status.exitstatus.zero?
+    CheckAlertMailer.with(user: current_user, check:).send_mail.deliver_later unless check_pass
     check.complete!
     processed_check_result = []
 

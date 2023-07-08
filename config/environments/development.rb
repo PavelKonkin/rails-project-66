@@ -71,4 +71,14 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts.clear
   config.web_console.whitelisted_ips = '140.82.115.0/16'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: '',
+    password: '',
+    address: 'sandbox.smtp.mailtrap.io',
+    host: 'sandbox.smtp.mailtrap.io',
+    port: '2525',
+    authentication: :cram_md5
+  }
 end
