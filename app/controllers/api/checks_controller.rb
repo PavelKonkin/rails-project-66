@@ -6,15 +6,9 @@ class Api::ChecksController < Api::ApplicationController
     repository = Repository.find_by(github_id: params['repository']['full_name'])
     return unless repository
 
-    repo_language = repository.language.downcase
-    if repo_language == 'ruby'
-      linter = :rubocop_api
-    elsif repo_language == 'javascript'
-      linter = :eslint_api
-    end
     check = repository.checks.build
     check.save
-    ApplicationContainer[linter].check_repo(repository.user, repository, check)
+    CheckJob.perform_later(user: repository.user, repo: repository, check:)
     render json: { status: 200 }
   end
 end
