@@ -10,18 +10,10 @@ class EslintApi
     end
     Open3.capture2("git clone #{repo['clone_url']}")
     check.start!
-    # conf_path = Rails.root.join('.eslintrc.yml')
-    # processed_check_result = []
-    # check_result, _status = Open3.popen3('ls node_modules/eslint/bin') { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
-    # processed_check_result << check_result
-    # check_result, _status = Open3.popen3("ls #{folder_path}") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
-    # processed_check_result << check_result
-    # check.update(check_result: processed_check_result)
     check_result, status = Open3.popen3("node_modules/eslint/bin/eslint.js #{repo[:name]} -c .eslintrc.yml -f json") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
-    check_pass = status.exitstatus.zero?
-    CheckAlertMailer.with(user: current_user, check:).send_mail.deliver_later unless check_pass
+    passed = status.exitstatus.zero?
+    CheckAlertMailer.with(user: current_user, check:).send_mail.deliver_later unless passed
     check.complete!
-    # check.update(check_pass:)
     processed_check_result = []
 
     error_count = 0
@@ -47,7 +39,7 @@ class EslintApi
     commit = ApplicationContainer[:octokit_api].commit(current_user, repo[:full_name])
     commit_id = commit['sha'][0...7]
     commit_link = commit['html_url']
-    check.update(check_result: processed_check_result, check_pass:, commit_id:, commit_link:, error_count:)
+    check.update(check_result: processed_check_result, passed:, commit_id:, commit_link:, error_count:)
   end
 
   def self.path_to_file_on_github(local_file_path, repo_full_name, repo_name)

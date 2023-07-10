@@ -3,7 +3,7 @@
 class Repository::Check < ApplicationRecord
   include AASM
 
-  aasm skip_validation_on_save: true, whiny_transitions: false, column: 'state' do
+  aasm skip_validation_on_save: true, whiny_transitions: false, column: 'aasm_state' do
     state :created, initial: true
     state :in_process, :completed
 

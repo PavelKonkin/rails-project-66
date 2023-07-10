@@ -23,15 +23,15 @@
               th
               th = t('.status')
               th = t('.commit_id')
-              th = t('.check_pass')
+              th = t('.passed')
               th = t('.created_at')
           tbody
             - @checks.each do |check|
               tr
                 td
                   = link_to check.id, check_path(check)
-                td = t(check.state)
+                td = t(check.aasm_state)
                 td
                   = link_to check.commit_id, check.commit_link
-                td = check.check_pass
+                td = check.passed
                 td = l check.created_at, format: :short

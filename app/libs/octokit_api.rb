@@ -23,7 +23,7 @@ class OctokitApi
   def self.set_webhook(current_user, repo)
     client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
     delete_webhook(current_user, repo)
-    client.create_hook(repo['full_name'], 'web', {
+    client.create_hook(repo.github_id, 'web', {
                          url: Rails.application.routes.url_helpers.url_for(controller: 'api/checks', action: 'on_push'),
                          content_type: 'json'
                        }, {
@@ -34,7 +34,7 @@ class OctokitApi
 
   def self.delete_webhook(current_user, repo)
     client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
-    repo_name = repo['full_name']
+    repo_name = repo.github_id
     webhook_url = Rails.application.routes.url_helpers.url_for(controller: 'api/checks', action: 'on_push')
     hooks = client.hooks(repo_name)
     hooks.each do |hook|

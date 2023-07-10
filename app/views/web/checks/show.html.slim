@@ -16,12 +16,12 @@
             td
               = t('.status')
             td
-              = @check.state
+              = t(@check.aasm_state)
           tr
             td
               = t('.check_pass')
             td
-              = @check.check_pass
+              = @check.passed
           tr
             td
               = t('.error_count')

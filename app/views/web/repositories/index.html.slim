@@ -16,6 +16,6 @@
               td = repository.language
               td
                 - if repository.checks.last
-                  = repository.checks.last.check_pass.to_s
+                  = repository.checks.last.passed.to_s
                 - else
                   = t('.not_run_yet')

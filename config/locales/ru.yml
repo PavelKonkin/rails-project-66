@@ -198,6 +198,17 @@ ru:
       create:
         check_created: Проверка запущена
       not_authorized: Войдите для доступа
+      show:
+        repository: Репозиторий
+        created_at: Дата создания
+        status: Cтатус
+        check_pass: Проверка пройдена?
+        error_count: Количество замечаний
+        commit_id: Коммит
+        check: Проверка
+        message: Сообщение
+        rule_id: Правило
+        row_symbol: 'Cтрока:Cимвол'
   helpers:
     submit:
       update: Сохранить изменения
