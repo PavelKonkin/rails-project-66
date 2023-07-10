@@ -6,7 +6,7 @@ class CheckAlertMailer < ApplicationMailer
     @check = params[:check]
     mail(
       to: @user.email,
-      subject: t('.check_failed')
+      subject: t('.check_failed', repo_title: @check.repository.title)
     )
   end
 end

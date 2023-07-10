@@ -4,11 +4,20 @@ en:
   under_moderation: Under moderation
   rejected: Rejected
   published: Published
+  completed: Completed
+  created: Created
+  in_process: In process
   attributes:
     title: Title
     description: Description
     category: Category
     name: Name
+    github_id: Repository
+  check_alert_mailer:
+    check_failed: Check of repository %{repo_title} has ended with some errors
+    send_mail:
+      greetings: Greetings, %{user}
+      text_html: Check of repository %{repo} has ended with some errors. Link for repo check <a href="%{check_path}" class="text-secondary fw-bolder" target="_blank">Repository analyzer</a>
   layouts:
     application:
       admin_panel: Admin panel
@@ -20,6 +29,7 @@ en:
       my_bulletins: My bulletins
       add_bulletin: Add bulletin
       sign_in: Sign in
+      repos: Repositories
   web:
     welcome:
       index:
@@ -174,6 +184,19 @@ en:
       forbidden: Sign in to access repositories
       create:
         repository_created: Repo has been created
+      show:
+        create_check: Run check
+        title: Title
+        language: Language
+        created_at: Created at
+        updated_at: Updated at
+        status: Status
+        commit_id: Commit id
+        check_pass: Check passed?
+    checks:
+      create:
+        check_created: Check started
+      not_authorized: Sign in to access
   helpers:
     submit:
       update: Update

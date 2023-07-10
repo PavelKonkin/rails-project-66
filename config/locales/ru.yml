@@ -4,11 +4,20 @@ ru:
   under_moderation: На модерации
   rejected: Возвращено
   published: Опубликовано
+  completed: Завершена
+  created: Создана
+  in_process: Запущена
   attributes:
     title: Название
     description: Описание
     category: Категория
     name: Имя
+    github_id: Репозиторий
+  check_alert_mailer:
+    check_failed: Проверка репозитория %{repo_title} завершилась с ошибками
+    send_mail:
+      greetings: Здравствуйте, %{user}
+      text_html: Проверка репозитория %{repo} завершилась с ошибками. Ссылка на проверку <a href="%{check_path}" class="text-secondary fw-bolder" target="_blank">Анализатор репозиториев</a>
   layouts:
     application:
       admin_panel: Админка
@@ -20,6 +29,7 @@ ru:
       my_bulletins: Мои объявления
       add_bulletin: Добавить объявление
       sign_in: Войти
+      repos: Репозитории
   web:
     welcome:
       index:
@@ -175,6 +185,19 @@ ru:
       forbidden: Войдите для доступа
       create:
         repository_created: Репозиторий создан
+      show:
+        create_check: Запустить проверку
+        title: Название
+        language: Язык
+        created_at: Дата создания
+        updated_at: Дата обновления
+        status: Статус
+        commit_id: ID коммита
+        check_pass: Проверка пройдена?
+    checks:
+      create:
+        check_created: Проверка запущена
+      not_authorized: Войдите для доступа
   helpers:
     submit:
       update: Сохранить изменения

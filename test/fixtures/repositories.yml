@@ -11,3 +11,9 @@ two:
   language: javascript
   user: two
   github_id: github_id_2
+
+api:
+  title: MyString
+  language: javascript
+  user: one
+  github_id: github_id_3
