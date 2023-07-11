@@ -10,7 +10,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create check' do
-    post web_hook_url params: { repository: @attributes }
+    post api_checks_url params: { repository: @attributes }
     assert { Repository::Check.last.repository == @repository }
     assert_response 200
   end

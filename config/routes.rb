@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     get :sessions, to: 'sessions#destroy'
   end
 
-  scope module: :api do
-    post '/api/checks', to: 'checks#on_push', as: :web_hook
+  namespace :api do
+    post '/checks', to: 'checks#on_push'
   end
   # scope module: :web do
   #   root 'welcome#index'
