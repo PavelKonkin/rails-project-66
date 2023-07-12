@@ -104,5 +104,5 @@ Rails.application.configure do
     authentication: :plain,
     tls: true
   }
-  config.action_mailer.default_url_options = { host: ENV.fetch('BASE_URL') }
+  config.action_mailer.default_url_options = { host: ENV.fetch('BASE_URL', nil) }
 end
