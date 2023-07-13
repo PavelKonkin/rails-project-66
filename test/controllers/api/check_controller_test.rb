@@ -11,7 +11,10 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create check' do
     post api_checks_url params: { repository: @attributes }
-    assert { Repository::Check.last.repository == @repository }
+    check = Repository::Check.last
+    assert { check.repository == @repository }
+    assert { check.finished? }
+    assert { check.passed }
     assert_response 200
   end
 end
