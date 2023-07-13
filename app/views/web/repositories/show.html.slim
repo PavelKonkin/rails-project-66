@@ -1,11 +1,11 @@
 .mt-4.mb-5.pb-5
   .container
     .p-4.align-items-center.border.shadow.bg-white.rounded-3
-      .h1 =< @repository.github_id
+      .h1 =< @repository.full_name
       = link_to t('.create_check'), repository_checks_path(@repository.id), data: { turbo_method: :post }, class: 'btn btn-primary'
       p
         strong = t('.title')
-        =< @repository.github_id
+        =< @repository.full_name
       p
         strong = t('.language')
         =< @repository.language
@@ -29,7 +29,7 @@
             - @checks.each do |check|
               tr
                 td
-                  = link_to check.id, check_path(check)
+                  = link_to check.id, repository_check_path(@repository, check)
                 td = t(check.aasm_state)
                 td
                   = link_to check.commit_id, check.commit_link

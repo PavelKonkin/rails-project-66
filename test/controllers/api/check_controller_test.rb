@@ -6,7 +6,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
   setup do
     sign_in users(:one)
     @repository = repositories(:api)
-    @attributes = { full_name: @repository.github_id }
+    @attributes = { full_name: @repository.full_name }
   end
 
   test 'should create check' do

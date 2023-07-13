@@ -1,3 +1,3 @@
 h1 = t('.greetings', user: @user.name)
 
-p = t('.text_html', check_path: check_url(@check), repo: @check.repository.title)
+p = t('.text_html', check_path: repository_check_url(@check.repository, @check), repo: @check.repository.title)

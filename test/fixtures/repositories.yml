@@ -5,15 +5,18 @@ one:
   language: ruby
   user: one
   github_id: github_id
+  full_name: full_name1
 
 two:
   title: MyString
   language: javascript
   user: two
   github_id: github_id_2
+  full_name: full_name2
 
 api:
   title: MyString
   language: javascript
   user: one
   github_id: github_id_3
+  full_name: full_name3

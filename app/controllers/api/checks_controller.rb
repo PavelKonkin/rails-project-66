@@ -3,7 +3,7 @@
 class Api::ChecksController < Api::ApplicationController
   skip_before_action :verify_authenticity_token
   def on_push
-    repository = Repository.find_by(github_id: params['repository']['full_name'])
+    repository = Repository.find_by(full_name: params['repository']['full_name'])
     return unless repository
 
     check = repository.checks.build

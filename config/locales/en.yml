@@ -192,7 +192,12 @@ en:
         updated_at: Updated at
         status: Status
         commit_id: Commit id
-        check_pass: Check passed?
+        passed: Check passed?
+      index:
+        new_repo: Add repository
+        title: Name
+        language: Language
+        last_check_status: Last check status
     checks:
       create:
         check_created: Check started

@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   scope module: :web do
     resources :repositories, only: %i[index new create show] do
-      resources :checks, shallow: true, only: %i[show create]
+      resources :checks, only: %i[show create]
     end
 
     root 'welcome#index'

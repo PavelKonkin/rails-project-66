@@ -193,7 +193,12 @@ ru:
         updated_at: Дата обновления
         status: Статус
         commit_id: ID коммита
-        check_pass: Проверка пройдена?
+        passed: Проверка пройдена?
+      index:
+        new_repo: Добавить репозиторий
+        title: Имя
+        language: Язык
+        last_check_status: Статус последней проверки
     checks:
       create:
         check_created: Проверка запущена

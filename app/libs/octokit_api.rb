@@ -11,9 +11,9 @@ class OctokitApi
     client.repos.each_with_object([]) { |repo, arr| (arr << repo[:full_name]) if lang_arr.include? repo.language }
   end
 
-  def self.repo(current_user, github_id)
+  def self.repo(current_user, full_name)
     client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
-    client.repos.find { |el| el.full_name == github_id }
+    client.repos.find { |el| el.full_name == full_name }
   end
 
   def self.commit(current_user, repo_full_name)
@@ -23,7 +23,7 @@ class OctokitApi
   def self.set_webhook(current_user, repo)
     client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
     delete_webhook(current_user, repo)
-    client.create_hook(repo.github_id, 'web', {
+    client.create_hook(repo.full_name, 'web', {
                          url: Rails.application.routes.url_helpers.url_for(controller: 'api/checks', action: 'on_push'),
                          content_type: 'json'
                        }, {
@@ -34,7 +34,7 @@ class OctokitApi
 
   def self.delete_webhook(current_user, repo)
     client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
-    repo_name = repo.github_id
+    repo_name = repo.full_name
     webhook_url = Rails.application.routes.url_helpers.url_for(controller: 'api/checks', action: 'on_push')
     hooks = client.hooks(repo_name)
     hooks.each do |hook|

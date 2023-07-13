@@ -3,7 +3,7 @@
 require 'open3'
 class RubocopApi
   def self.check_repo(current_user, repository, check)
-    repo = ApplicationContainer[:octokit_api].repo(current_user, repository.github_id)
+    repo = ApplicationContainer[:octokit_api].repo(current_user, repository.full_name)
     folder_path = Rails.root.join(repo[:name])
     if File.directory?(folder_path)
       FileUtils.rm_rf(repo[:name])
@@ -13,7 +13,7 @@ class RubocopApi
     check_result, status = Open3.popen3("rubocop #{folder_path} -c .rubocop.yml --format json") { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
     passed = status.exitstatus.zero?
     CheckAlertMailer.with(user: current_user, check:).send_mail.deliver_later unless passed
-    check.complete!
+    check.finish!
     processed_check_result = []
 
     json_result = JSON.parse(check_result)
