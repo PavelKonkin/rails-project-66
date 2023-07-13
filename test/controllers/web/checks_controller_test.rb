@@ -11,8 +11,10 @@ class Web::ChecksControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create check' do
     post repository_checks_url(@repository)
-    assert { Repository::Check.last.repository == @repository }
+    check = @repository.checks.last
     assert_redirected_to repository_url(@repository)
+    assert { check.repository == @repository }
+    assert { check.finished? }
   end
 
   test 'should show check' do
