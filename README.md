@@ -5,8 +5,9 @@
 ![GitHub Action Status](https://github.com/PavelKonkin/rails-project-66/actions/workflows/github_action.yml/badge.svg)
 
 ## Project deployed and available via link: 
-https://rails-project-66-production-4853.up.railway.app
+http://193.164.150.79
 
 ## Instructions
 
-#TODO
+To check your GitHub repositories with linter first you need to log in using yourGitHub account. After that you can choose one of your github repositories to check. In case of errors you wil receive mail. Check authomatically run when repository, that added to app, receive commit.
+ 
