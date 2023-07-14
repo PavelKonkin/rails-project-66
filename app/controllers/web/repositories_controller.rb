@@ -20,7 +20,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def create
     repo = ApplicationContainer[:octokit_api].repo(current_user, repository_params[:full_name])
-    @repository = current_user.repositories.build(repository_params.merge({ language: repo[:language].downcase, title: repo[:name], name: repo[:name], github_id: repo[:id] }))
+    @repository = current_user.repositories.build(repository_params.merge({ language: repo[:language].downcase, title: repo[:name], name: repo[:name], github_id: repo[:github_id] }))
     authorize @repository
     if @repository.save
       SetWebhookJob.perform_later(user: current_user, repository: @repository)

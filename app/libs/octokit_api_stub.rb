@@ -11,7 +11,7 @@ class OctokitApiStub
     # response = JSON.parse(File.read('test/fixtures/files/response.json'))
     # response.find { |el| el['full_name'] == full_name }
     {
-      id: '1234567',
+      github_id: '1234567',
       full_name: 'octocat/Hello-World',
       name: 'Hello-World',
       language: 'javascript'
