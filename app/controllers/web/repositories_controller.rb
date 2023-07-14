@@ -19,8 +19,8 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def create
-    repo = ApplicationContainer[:octokit_api].repo(current_user, repository_params[:full_name])
-    @repository = current_user.repositories.build(repository_params.merge({ language: repo[:language].downcase, title: repo[:name], name: repo[:name], github_id: repo[:github_id] }))
+    repo = ApplicationContainer[:octokit_api].repo(current_user, repository_params[:github_id])
+    @repository = current_user.repositories.build(repository_params.merge({ language: repo[:language].downcase, title: repo[:name], name: repo[:name], full_name: repo[:full_name] }))
     authorize @repository
     if @repository.save
       SetWebhookJob.perform_later(user: current_user, repository: @repository)
@@ -33,6 +33,6 @@ class Web::RepositoriesController < Web::ApplicationController
   private
 
   def repository_params
-    params.require(:repository).permit(:full_name)
+    params.require(:repository).permit(:github_id)
   end
 end
