@@ -22,7 +22,7 @@ Metrics/BlockLength:
   Enabled: false
 
 Metrics/CyclomaticComplexity:
-  Enabled: false
+  Enabled: true
 
 Metrics/MethodLength:
   Enabled: false

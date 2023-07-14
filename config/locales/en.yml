@@ -4,7 +4,7 @@ en:
   under_moderation: Under moderation
   rejected: Rejected
   published: Published
-  completed: Completed
+  finished: Completed
   created: Created
   in_process: In process
   attributes:
